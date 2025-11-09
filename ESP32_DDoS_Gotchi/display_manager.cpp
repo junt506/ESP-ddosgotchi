@@ -75,9 +75,16 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
 
     // Setup PWM for backlight (Bruce method - more precise control)
     pinMode(21, OUTPUT);
-    ledcSetup(0, 5000, 8);         // Channel 0, 5kHz, 8-bit resolution
-    ledcAttachPin(21, 0);          // Attach GPIO 21 to channel 0
-    ledcWrite(0, 255);             // Full brightness (0-255)
+
+    // ESP32 Arduino Core 3.x uses new API, 2.x uses old API
+    #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+        ledcAttach(21, 5000, 8);   // New API: pin, freq, resolution
+        ledcWrite(21, 255);        // New API: pin, duty
+    #else
+        ledcSetup(0, 5000, 8);     // Old API: channel, freq, resolution
+        ledcAttachPin(21, 0);      // Old API: pin, channel
+        ledcWrite(0, 255);         // Old API: channel, duty
+    #endif
 
     Serial.println("[DISPLAY] Backlight enabled (PWM)");
     Serial.print("[DISPLAY] TFT initialized. Width: ");
