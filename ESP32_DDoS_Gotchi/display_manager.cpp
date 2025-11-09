@@ -69,10 +69,13 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
     Serial.println("[DISPLAY] Backlight enabled");
 
     tft->init();
-    tft->setRotation(3); // Landscape mode - try 3 instead of 1 (might be inverted)
+    tft->setRotation(1); // Landscape: 0=portrait, 1=landscape, 2=portrait flip, 3=landscape flip
     tft->fillScreen(COLOR_BACKGROUND);
 
-    Serial.println("[DISPLAY] TFT initialized (320x240 landscape)");
+    Serial.print("[DISPLAY] TFT initialized. Width: ");
+    Serial.print(tft->width());
+    Serial.print(", Height: ");
+    Serial.println(tft->height());
 }
 
 // ============================================================================
