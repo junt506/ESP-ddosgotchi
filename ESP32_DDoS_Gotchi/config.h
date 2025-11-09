@@ -51,7 +51,7 @@
 
 // Update intervals
 #define NETWORK_UPDATE_INTERVAL 2000   // Check network every 2 seconds
-#define DISPLAY_UPDATE_INTERVAL 500    // Update display every 500ms
+#define DISPLAY_UPDATE_INTERVAL 2000   // Update display every 2 seconds (reduced to prevent flicker)
 #define PING_CHECK_INTERVAL 10000      // Ping gateway every 10 seconds
 
 // ============================================================================
