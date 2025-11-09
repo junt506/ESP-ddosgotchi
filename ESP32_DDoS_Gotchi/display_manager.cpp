@@ -48,7 +48,7 @@ const char* QUOTE_STRESSED = "HELP! DDoS!!!";
 
 DisplayManager::DisplayManager() {
     tft = nullptr;
-    lastState = STATE_HAPPY;
+    lastState = (AttackState)255;  // Invalid state to force first draw
     lastPacketRate = 0;
     lastLatency = 0.0;
     lastPacketLoss = 0.0;
@@ -190,7 +190,7 @@ void DisplayManager::drawFaceArea(AttackState state) {
 // ============================================================================
 
 void DisplayManager::drawFace(const char* face[], uint16_t color) {
-    tft->setTextColor(color);
+    tft->setTextColor(color, COLOR_BACKGROUND);  // Set foreground AND background
     tft->setTextSize(2);
 
     int startY = FACE_Y + 20;
@@ -210,7 +210,7 @@ void DisplayManager::drawFace(const char* face[], uint16_t color) {
 // ============================================================================
 
 void DisplayManager::drawQuote(const char* quote, uint16_t color) {
-    tft->setTextColor(color);
+    tft->setTextColor(color, COLOR_BACKGROUND);  // Set foreground AND background
     tft->setTextSize(1);
 
     int textWidth = strlen(quote) * 6; // Approximate width
