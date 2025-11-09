@@ -63,15 +63,23 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
 
     Serial.println("[DISPLAY] Initializing TFT...");
 
-    // Turn on backlight (GPIO 21 on ESP32-2432S028R)
-    pinMode(21, OUTPUT);
-    digitalWrite(21, HIGH);
-    Serial.println("[DISPLAY] Backlight enabled");
-
+    // Initialize display
     tft->init();
-    tft->setRotation(1); // Landscape: 0=portrait, 1=landscape, 2=portrait flip, 3=landscape flip
+
+    // Bruce configuration: setRotation TWICE because "sometimes it misses the first command"
+    tft->setRotation(1);           // First rotation call
+    tft->invertDisplay(true);      // Invert display (Bruce default: colorInverted=1)
+    tft->setRotation(1);           // Second rotation call to ensure it takes
+
     tft->fillScreen(COLOR_BACKGROUND);
 
+    // Setup PWM for backlight (Bruce method - more precise control)
+    pinMode(21, OUTPUT);
+    ledcSetup(0, 5000, 8);         // Channel 0, 5kHz, 8-bit resolution
+    ledcAttachPin(21, 0);          // Attach GPIO 21 to channel 0
+    ledcWrite(0, 255);             // Full brightness (0-255)
+
+    Serial.println("[DISPLAY] Backlight enabled (PWM)");
     Serial.print("[DISPLAY] TFT initialized. Width: ");
     Serial.print(tft->width());
     Serial.print(", Height: ");
