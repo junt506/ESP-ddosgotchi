@@ -14,11 +14,16 @@
 // ============================================================================
 // Driver Selection
 // ============================================================================
-#define ILI9341_DRIVER      // 2.8" 320x240 TFT
+#define ILI9341_2_DRIVER    // 2.8" 320x240 TFT - CORRECT DRIVER FOR CYD!
+#define USE_HSPI_PORT       // Use HSPI port (leaves VSPI free)
 
 // ============================================================================
 // ESP32 Pin Configuration for ESP32-2432S028R
 // ============================================================================
+
+// Display dimensions (native portrait, becomes 320x240 in rotation 1)
+#define TFT_WIDTH  240
+#define TFT_HEIGHT 320
 
 // TFT Display Pins
 #define TFT_MISO 12
@@ -51,9 +56,9 @@
 // SPI Configuration
 // ============================================================================
 
-#define SPI_FREQUENCY  40000000  // 40MHz (maximum for ILI9341)
-#define SPI_READ_FREQUENCY  20000000
-#define SPI_TOUCH_FREQUENCY  2500000
+#define SPI_FREQUENCY  40000000   // 40MHz for write (fast rendering)
+#define SPI_READ_FREQUENCY  16000000  // 16MHz for read (stability)
+#define SPI_TOUCH_FREQUENCY  2500000  // 2.5MHz for touch
 
 // ============================================================================
 // Optional Features
