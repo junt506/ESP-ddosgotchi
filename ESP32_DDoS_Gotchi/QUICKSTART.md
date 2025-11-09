@@ -29,7 +29,7 @@ Tools → Board → Boards Manager → Search "ESP32" → Install
 # In Arduino IDE Library Manager (Sketch → Include Library → Manage Libraries):
 
 1. Search "TFT_eSPI" → Install (by Bodmer)
-2. Search "ESP32Ping" → Install (by marian-craciunescu)
+2. Search "ESPping" → Install
 ```
 
 ### 3. Configure TFT_eSPI

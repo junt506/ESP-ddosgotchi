@@ -81,7 +81,7 @@ Install these libraries via `Sketch` → `Include Library` → `Manage Libraries
 | Library | Version | Purpose |
 |---------|---------|---------|
 | **TFT_eSPI** | 2.5.0+ | ILI9341 display driver |
-| **ESP32Ping** | 1.7+ | ICMP ping functionality |
+| **ESPping** | Latest | ICMP ping functionality |
 
 #### Installing TFT_eSPI
 
@@ -93,12 +93,12 @@ Install: "TFT_eSPI by Bodmer"
 
 ⚠️ **IMPORTANT**: After installing TFT_eSPI, you MUST configure it for the ESP32-2432S028R board.
 
-#### Installing ESP32Ping
+#### Installing ESPping
 
 ```bash
 # In Arduino IDE Library Manager:
-Search: "ESP32Ping"
-Install: "ESP32Ping by marian-craciunescu"
+Search: "ESPping"
+Install: "ESPping" (thanks to Daniele Colanardi and Marian Craciunescu)
 ```
 
 ## ⚙️ Installation
