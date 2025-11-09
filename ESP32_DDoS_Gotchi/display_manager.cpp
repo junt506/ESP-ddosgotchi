@@ -5,6 +5,44 @@
 #include "display_manager.h"
 
 // ============================================================================
+// Pwnagotchi Faces (ASCII Art) - Definitions
+// ============================================================================
+
+// Happy face (normal operation)
+const char* FACE_HAPPY[] = {
+    " (◕‿◕) ",
+    "  DDoS  ",
+    " Gotchi "
+};
+
+// Alert face (warning)
+const char* FACE_ALERT[] = {
+    " (°□°) ",
+    "  DDoS  ",
+    " Gotchi "
+};
+
+// Under attack face
+const char* FACE_ATTACK[] = {
+    " (ಠ_ಠ) ",
+    "  DDoS  ",
+    " Gotchi "
+};
+
+// Stressed face (severe attack)
+const char* FACE_STRESSED[] = {
+    " (╯°□°)╯",
+    "  DDoS   ",
+    " Gotchi  "
+};
+
+// Quotes for each state
+const char* QUOTE_HAPPY = "All systems normal";
+const char* QUOTE_ALERT = "Hmm... suspicious";
+const char* QUOTE_ATTACK = "UNDER ATTACK!";
+const char* QUOTE_STRESSED = "HELP! DDoS!!!";
+
+// ============================================================================
 // Constructor
 // ============================================================================
 
