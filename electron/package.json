@@ -1,0 +1,23 @@
+{
+  "name": "ddos-gotchi-hud",
+  "version": "3.0.0",
+  "description": "DDoS Gotchi - Futuristic HUD Network Monitor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": [
+    "ddos",
+    "network",
+    "monitor",
+    "security",
+    "pwnagotchi",
+    "hud"
+  ],
+  "author": "DDoS Gotchi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+# DDoS Gotchi Desktop - Required Dependencies
+# Minimal dependencies for desktop GUI version
+
+# Network monitoring
+netifaces>=0.11.0
+psutil>=5.9.0
+
+# GUI and graphs
+matplotlib>=3.5.0
+
+# Note: System packages needed (install via package manager):
+#   Ubuntu/Debian: sudo apt-get install python3-tk python3-pil.imagetk
+#   Fedora: sudo dnf install python3-tkinter python3-pillow-tk
+#   macOS: comes with Python (no additional packages needed)

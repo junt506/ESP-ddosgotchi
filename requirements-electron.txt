@@ -1,0 +1,16 @@
+# Network monitoring
+netifaces>=0.11.0
+psutil>=5.9.0
+
+# WebSocket server for Electron communication
+websockets>=12.0
+
+# Threat intelligence (async HTTP requests)
+aiohttp>=3.9.0
+
+# Note: Node.js and npm are required for Electron
+# Install Node.js from: https://nodejs.org/
+# Or via package manager:
+#   Fedora: sudo dnf install nodejs npm
+#   Ubuntu: sudo apt-get install nodejs npm
+#   macOS: brew install node

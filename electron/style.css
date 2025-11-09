@@ -1,0 +1,871 @@
+* {
+  user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #0F0;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Show dashboard immediately */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  opacity: 1;
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #001100;
+  border-bottom: 2px solid #0F0;
+  height: 80px;
+}
+
+.header-left .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0F0;
+  text-shadow: 0 0 10px #0F0;
+  letter-spacing: 3px;
+}
+
+.header-center {
+  text-align: center;
+  flex: 1;
+}
+
+.pwnagotchi-face {
+  font-size: 36px;
+  color: #0F0;
+  text-shadow: 0 0 15px #0F0;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.quote {
+  font-size: 14px;
+  color: #0F0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.header-right {
+  font-size: 18px;
+  color: #0F0;
+}
+
+/* ============================================================================
+   MAIN CONTENT - 3 COLUMNS
+   ============================================================================ */
+#main-content {
+  display: flex;
+  flex: 1;
+  padding: 10px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.panel {
+  background: rgba(0, 255, 0, 0.05);
+  border: 2px solid #0F0;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #0F0;
+  margin-bottom: 5px;
+  text-align: center;
+  text-shadow: 0 0 5px #0F0;
+}
+
+.panel-subtitle {
+  font-size: 11px;
+  color: #0A0;
+  margin-bottom: 10px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.divider {
+  height: 2px;
+  background: #0F0;
+  margin: 15px 0;
+  opacity: 0.3;
+}
+
+/* Left Panel - Network Stats */
+#left-panel {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-group {
+  flex: 1;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+.stat-label {
+  color: #0A0;
+}
+
+.stat-value {
+  color: #0F0;
+  font-weight: bold;
+  text-shadow: 0 0 5px #0F0;
+}
+
+.stat-value.threat-normal {
+  color: #0F0;
+}
+
+.stat-value.threat-warning {
+  color: #FF0;
+  text-shadow: 0 0 5px #FF0;
+}
+
+.stat-value.threat-attack {
+  color: #F00;
+  text-shadow: 0 0 10px #F00;
+  animation: blink-alert 0.5s infinite;
+}
+
+@keyframes blink-alert {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+/* Protocol Distribution Chart */
+#protocol-chart {
+  margin-top: 15px;
+  padding: 10px 0;
+}
+
+.protocol-bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.protocol-label {
+  width: 50px;
+  font-size: 11px;
+  color: #0F0;
+  font-weight: bold;
+  text-align: right;
+}
+
+.protocol-bar-wrapper {
+  flex: 1;
+  height: 18px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.protocol-bar {
+  height: 100%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px currentColor;
+  position: relative;
+}
+
+.protocol-percentage {
+  width: 40px;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Center Display - Neural Nexus 3D Visualization */
+#center-display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#center-display canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Right Panel - Connection Log */
+#right-panel {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+#connection-log {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#connection-log::-webkit-scrollbar {
+  width: 6px;
+}
+
+#connection-log::-webkit-scrollbar-track {
+  background: #001100;
+}
+
+#connection-log::-webkit-scrollbar-thumb {
+  background: #0F0;
+  box-shadow: 0 0 5px #0F0;
+}
+
+/* IP Entry Styling */
+.ip-entry {
+  margin: 8px 0;
+  padding: 10px;
+  border-left: 4px solid #0F0;
+  background: rgba(0, 255, 0, 0.08);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.ip-entry:hover {
+  background: rgba(0, 255, 0, 0.15);
+  transform: translateX(2px);
+}
+
+.ip-entry.local {
+  border-left-color: #0FF;
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.ip-entry.local:hover {
+  background: rgba(0, 255, 255, 0.18);
+}
+
+.ip-entry.public {
+  border-left-color: #0F0;
+}
+
+/* New connections - RED highlight */
+.ip-entry.new-connection {
+  border-left-color: #F00 !important;
+  background: rgba(255, 0, 0, 0.15) !important;
+  animation: pulse-red 1s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* IP Header */
+.ip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ip-label {
+  background: rgba(0, 255, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.ip-entry.local .ip-label {
+  background: rgba(0, 255, 255, 0.3);
+  color: #0FF;
+}
+
+.ip-entry.new-connection .ip-label {
+  background: rgba(255, 0, 0, 0.3);
+  color: #F00;
+}
+
+.ip-address {
+  color: #0F0;
+  text-shadow: 0 0 5px #0F0;
+  flex: 1;
+  font-family: 'Courier New', monospace;
+}
+
+.ip-entry.local .ip-address {
+  color: #0FF;
+  text-shadow: 0 0 5px #0FF;
+}
+
+.ip-entry.new-connection .ip-address {
+  color: #F00;
+  text-shadow: 0 0 5px #F00;
+}
+
+.conn-count {
+  color: #0F0;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* Port Info */
+.port-info {
+  font-size: 11px;
+  color: #0F0;
+  opacity: 0.7;
+  margin-left: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+.ip-entry.local .port-info {
+  color: #0FF;
+}
+
+.ip-entry.new-connection .port-info {
+  color: #F00;
+}
+
+/* Timestamp */
+.ip-timestamp {
+  font-size: 10px;
+  color: #0F0;
+  opacity: 0.6;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.ip-entry.local .ip-timestamp {
+  color: #0FF;
+}
+
+.ip-entry.new-connection .ip-timestamp {
+  color: #F00;
+}
+
+/* ============================================================================
+   BOTTOM GRAPHS
+   ============================================================================ */
+#graphs-area {
+  display: flex;
+  gap: 15px;
+  padding: 10px 15px;
+  height: 300px;
+}
+
+.graph-container {
+  flex: 1;
+  background: rgba(0, 255, 0, 0.05);
+  border: 2px solid #0F0;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  border-radius: 8px;
+}
+
+.graph-title {
+  font-size: 14px;
+  color: #0F0;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 0 8px #0F0;
+  letter-spacing: 2px;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* ============================================================================
+   ATTACK MODE - COLOR OVERRIDES
+   ============================================================================ */
+body.mode-attack {
+  background: #100000;
+}
+
+body.mode-attack #header {
+  background: #110000;
+  border-bottom-color: #F00;
+}
+
+body.mode-attack .header-left .title,
+body.mode-attack .pwnagotchi-face,
+body.mode-attack .quote,
+body.mode-attack .header-right {
+  color: #F00;
+  text-shadow: 0 0 15px #F00;
+}
+
+body.mode-attack .panel {
+  border-color: #F00;
+  background: rgba(255, 0, 0, 0.05);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+body.mode-attack .panel-title,
+body.mode-attack .stat-label,
+body.mode-attack .stat-value {
+  color: #F00;
+  text-shadow: 0 0 5px #F00;
+}
+
+body.mode-attack .divider {
+  background: #F00;
+}
+
+body.mode-attack .activity-bar {
+  background: #F00;
+  box-shadow: 0 0 5px #F00;
+}
+
+body.mode-attack .graph-container {
+  border-color: #F00;
+  background: rgba(255, 0, 0, 0.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+body.mode-attack .graph-title {
+  color: #F00;
+}
+
+/* ============================================================================
+   SETTINGS BUTTON
+   ============================================================================ */
+.settings-btn {
+  background: none;
+  border: 2px solid #0F0;
+  color: #0F0;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-btn:hover {
+  background: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 15px #0F0;
+  transform: rotate(90deg);
+}
+
+/* ============================================================================
+   SETTINGS PANEL
+   ============================================================================ */
+.settings-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.settings-panel.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.settings-content {
+  background: #001100;
+  border: 2px solid #0F0;
+  border-radius: 10px;
+  width: 600px;
+  max-height: 80vh;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-header {
+  padding: 20px;
+  border-bottom: 2px solid #0F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-header h2 {
+  margin: 0;
+  color: #0F0;
+  font-size: 24px;
+  text-shadow: 0 0 10px #0F0;
+}
+
+.close-btn {
+  background: none;
+  border: 2px solid #0F0;
+  color: #0F0;
+  font-size: 32px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 0;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 0, 0, 0.3);
+  border-color: #F00;
+  color: #F00;
+  transform: rotate(90deg);
+}
+
+.settings-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.settings-section {
+  margin-bottom: 25px;
+}
+
+.settings-section h3 {
+  color: #0F0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-shadow: 0 0 5px #0F0;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: rgba(0, 255, 0, 0.05);
+  border-radius: 5px;
+}
+
+.setting-item label {
+  color: #0F0;
+  font-size: 14px;
+}
+
+.setting-item input[type="number"],
+.setting-item select {
+  background: #000;
+  border: 1px solid #0F0;
+  color: #0F0;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  width: 150px;
+}
+
+.setting-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.settings-footer {
+  padding: 20px;
+  border-top: 2px solid #0F0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-save,
+.btn-reset {
+  padding: 10px 20px;
+  border: 2px solid #0F0;
+  background: rgba(0, 255, 0, 0.1);
+  color: #0F0;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+  background: rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 15px #0F0;
+}
+
+.btn-reset {
+  border-color: #F00;
+  color: #F00;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.btn-reset:hover {
+  background: rgba(255, 0, 0, 0.3);
+  box-shadow: 0 0 15px #F00;
+}
+
+/* ============================================================================
+   CONNECTION DETAILS MODAL
+   ============================================================================ */
+.connection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connection-modal .modal-content {
+  background: #001100;
+  border: 2px solid #0F0;
+  border-radius: 10px;
+  width: 700px;
+  max-height: 80vh;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.connection-modal .modal-header {
+  padding: 20px;
+  border-bottom: 2px solid #0F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.connection-modal .modal-header h2 {
+  margin: 0;
+  color: #0F0;
+  font-size: 24px;
+  text-shadow: 0 0 10px #0F0;
+}
+
+.connection-modal .modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detail-section {
+  margin-bottom: 25px;
+}
+
+.detail-section h3 {
+  color: #0F0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-shadow: 0 0 5px #0F0;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+  padding-bottom: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.detail-row.warning {
+  background: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.detail-label {
+  color: #0A0;
+  font-size: 14px;
+}
+
+.detail-value {
+  color: #0F0;
+  font-weight: bold;
+  text-shadow: 0 0 5px #0F0;
+}
+
+/* ============================================================================
+   SUSPICIOUS PORT HIGHLIGHTING
+   ============================================================================ */
+.suspicious-port {
+  color: #F00;
+  font-weight: bold;
+  text-shadow: 0 0 5px #F00;
+  padding: 2px 6px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 3px;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+.warning-icon {
+  font-size: 14px;
+  animation: pulse-warning 1s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ============================================================================
+   COLOR SCHEMES
+   ============================================================================ */
+
+/* CYBERPUNK PINK THEME */
+body.theme-cyberpunk {
+  color: #FF00FF;
+}
+
+body.theme-cyberpunk #header {
+  background: #110011;
+  border-bottom-color: #FF00FF;
+}
+
+body.theme-cyberpunk .header-left .title,
+body.theme-cyberpunk .pwnagotchi-face,
+body.theme-cyberpunk .quote,
+body.theme-cyberpunk .header-right {
+  color: #FF00FF;
+  text-shadow: 0 0 15px #FF00FF;
+}
+
+body.theme-cyberpunk .panel {
+  border-color: #FF00FF;
+  background: rgba(255, 0, 255, 0.05);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+body.theme-cyberpunk .panel-title,
+body.theme-cyberpunk .stat-label,
+body.theme-cyberpunk .stat-value,
+body.theme-cyberpunk .graph-title {
+  color: #FF00FF;
+  text-shadow: 0 0 5px #FF00FF;
+}
+
+body.theme-cyberpunk .divider,
+body.theme-cyberpunk .graph-container {
+  border-color: #FF00FF;
+  background: rgba(255, 0, 255, 0.05);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+body.theme-cyberpunk .settings-btn,
+body.theme-cyberpunk .close-btn,
+body.theme-cyberpunk .btn-save,
+body.theme-cyberpunk input,
+body.theme-cyberpunk select {
+  border-color: #FF00FF;
+  color: #FF00FF;
+}
+
+body.theme-cyberpunk .settings-content,
+body.theme-cyberpunk .connection-modal .modal-content {
+  background: #110011;
+  border-color: #FF00FF;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+}
+
+/* MATRIX LIME THEME */
+body.theme-matrix {
+  color: #00FF00;
+}
+
+body.theme-matrix #header {
+  background: #001100;
+  border-bottom-color: #00FF00;
+}
+
+body.theme-matrix .header-left .title,
+body.theme-matrix .pwnagotchi-face,
+body.theme-matrix .quote,
+body.theme-matrix .header-right {
+  color: #00FF00;
+  text-shadow: 0 0 15px #00FF00;
+}
+
+body.theme-matrix .panel {
+  border-color: #00FF00;
+  background: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+body.theme-matrix .panel-title,
+body.theme-matrix .stat-label,
+body.theme-matrix .stat-value,
+body.theme-matrix .graph-title {
+  color: #00FF00;
+  text-shadow: 0 0 5px #00FF00;
+}
+
+body.theme-matrix .divider,
+body.theme-matrix .graph-container {
+  border-color: #00FF00;
+  background: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+body.theme-matrix .settings-btn,
+body.theme-matrix .close-btn,
+body.theme-matrix .btn-save,
+body.theme-matrix input,
+body.theme-matrix select {
+  border-color: #00FF00;
+  color: #00FF00;
+}
+
+body.theme-matrix .settings-content,
+body.theme-matrix .connection-modal .modal-content {
+  background: #001100;
+  border-color: #00FF00;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+}

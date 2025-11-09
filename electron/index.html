@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DDoS Gotchi v3.0 - HUD Monitor</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<div id="app">
+  <!-- Top Header Bar -->
+  <div id="header">
+    <div class="header-left">
+      <span class="title">DDoS GOTCHI v3.0</span>
+    </div>
+    <div class="header-center">
+      <div id="gotchi-face" class="pwnagotchi-face">(◕‿‿◕)</div>
+      <div id="gotchi-quote" class="quote">initializing network monitor...</div>
+    </div>
+    <div class="header-right">
+      <button class="settings-btn" onclick="toggleSettingsPanel()" title="Settings (Ctrl/Cmd + ,)">⚙️</button>
+      <span id="current-time">00:00:00</span>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div id="main-content">
+
+    <!-- Left Panel - Network Stats -->
+    <div id="left-panel" class="panel">
+      <div class="panel-title">[ NETWORK STATUS ]</div>
+
+      <div class="stat-group">
+        <div class="stat-row">
+          <span class="stat-label">My IP:</span>
+          <span class="stat-value" id="stat-my-ip">0.0.0.0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Gateway:</span>
+          <span class="stat-value" id="stat-gateway">0.0.0.0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Network:</span>
+          <span class="stat-value" id="stat-network">0.0.0.0/24</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total Connections:</span>
+          <span class="stat-value" id="stat-connections">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Unique IPs:</span>
+          <span class="stat-value" id="stat-unique-ips">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Threats Detected:</span>
+          <span class="stat-value threat-count" id="stat-threats">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Latency:</span>
+          <span class="stat-value" id="stat-latency">0 ms</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Packet Loss:</span>
+          <span class="stat-value" id="stat-packet-loss">0%</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Threat Level:</span>
+          <span class="stat-value threat-normal" id="stat-threat">NORMAL</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="panel-title">[ PROTOCOL DISTRIBUTION ]</div>
+      <div class="panel-subtitle">Real-time traffic breakdown</div>
+      <div id="protocol-chart"></div>
+    </div>
+
+    <!-- Center - Neural Nexus 3D Visualization -->
+    <div id="center-display">
+      <!-- Three.js canvas will be inserted here -->
+    </div>
+
+    <!-- Right Panel - Live Connection Log -->
+    <div id="right-panel" class="panel">
+      <div class="panel-title">[ ACTIVE CONNECTIONS ]</div>
+      <div class="panel-subtitle">
+        <span id="total-ips">0 unique IPs</span> |
+        <span id="new-ips">0 new</span>
+      </div>
+      <div id="connection-log"></div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Graphs -->
+  <div id="graphs-area">
+    <div class="graph-container">
+      <div class="graph-title">LATENCY (MS)</div>
+      <canvas id="latency-graph" width="1200" height="280"></canvas>
+    </div>
+    <div class="graph-container">
+      <div class="graph-title">PACKET LOSS (%)</div>
+      <canvas id="packetloss-graph" width="1200" height="280"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="renderer.js"></script>
+
+</body>
+</html>

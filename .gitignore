@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+backend/venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+
+# Logs
+*.log
+logs/
+attack_log.txt
+ddos_gotchi.log
+
+# Test outputs
+test_results/
+screenshots/
+
+# OS specific
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Custom user configs (keep template)
+config_local.json
+user_config.json
+
+# Attack data
+attacks.json
+network_stats.csv
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Node modules
+node_modules/
