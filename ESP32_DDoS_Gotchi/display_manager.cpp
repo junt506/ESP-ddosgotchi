@@ -63,6 +63,11 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
 
     Serial.println("[DISPLAY] Initializing TFT...");
 
+    // Turn on backlight (GPIO 21 on ESP32-2432S028R)
+    pinMode(21, OUTPUT);
+    digitalWrite(21, HIGH);
+    Serial.println("[DISPLAY] Backlight enabled");
+
     tft->init();
     tft->setRotation(1); // Landscape mode (320x240)
     tft->fillScreen(COLOR_BACKGROUND);
