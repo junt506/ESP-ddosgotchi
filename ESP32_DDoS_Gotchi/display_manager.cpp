@@ -69,7 +69,7 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
     Serial.println("[DISPLAY] Backlight enabled");
 
     tft->init();
-    tft->setRotation(1); // Landscape mode (320x240)
+    tft->setRotation(3); // Landscape mode - try 3 instead of 1 (might be inverted)
     tft->fillScreen(COLOR_BACKGROUND);
 
     Serial.println("[DISPLAY] TFT initialized (320x240 landscape)");
@@ -82,16 +82,16 @@ void DisplayManager::begin(TFT_eSPI* tftPtr) {
 void DisplayManager::showBootScreen(const char* title, const char* message) {
     tft->fillScreen(COLOR_BACKGROUND);
 
-    // Title
+    // Title - centered for landscape 320x240
     tft->setTextColor(COLOR_HAPPY);
     tft->setTextSize(2);
-    tft->setCursor(40, 80);
+    tft->setCursor(20, 100);
     tft->println(title);
 
     // Message
     tft->setTextColor(COLOR_TEXT);
     tft->setTextSize(1);
-    tft->setCursor(60, 120);
+    tft->setCursor(80, 140);
     tft->println(message);
 }
 
@@ -106,16 +106,22 @@ void DisplayManager::update(NetworkStats& stats, AttackResult& result) {
         lastState = result.state;
     }
 
-    // Always update stats (small area, quick)
-    drawStatsArea(stats, result);
+    // Only update stats if values changed significantly
+    if (abs(stats.latency - lastLatency) > 1.0 ||
+        abs(stats.packetLoss - lastPacketLoss) > 0.5 ||
+        stats.packetRate != lastPacketRate) {
+        drawStatsArea(stats, result);
+        lastLatency = stats.latency;
+        lastPacketLoss = stats.packetLoss;
+        lastPacketRate = stats.packetRate;
+    }
 
-    // Update graph area
-    drawGraphArea(stats);
-
-    // Store last values
-    lastPacketRate = stats.packetRate;
-    lastLatency = stats.latency;
-    lastPacketLoss = stats.packetLoss;
+    // Only update graphs when new data is added (check history index)
+    static uint8_t lastHistoryIndex = 0;
+    if (stats.historyIndex != lastHistoryIndex) {
+        drawGraphArea(stats);
+        lastHistoryIndex = stats.historyIndex;
+    }
 }
 
 // ============================================================================
