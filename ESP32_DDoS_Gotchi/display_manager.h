@@ -18,42 +18,18 @@
 #include "attack_detector.h"
 
 // ============================================================================
-// Pwnagotchi Faces (ASCII Art)
+// Pwnagotchi Faces (ASCII Art) - Declared as extern (defined in .cpp)
 // ============================================================================
 
-// Happy face (normal operation)
-const char* FACE_HAPPY[] = {
-    " (◕‿◕) ",
-    "  DDoS  ",
-    " Gotchi "
-};
+extern const char* FACE_HAPPY[];
+extern const char* FACE_ALERT[];
+extern const char* FACE_ATTACK[];
+extern const char* FACE_STRESSED[];
 
-// Alert face (warning)
-const char* FACE_ALERT[] = {
-    " (°□°) ",
-    "  DDoS  ",
-    " Gotchi "
-};
-
-// Under attack face
-const char* FACE_ATTACK[] = {
-    " (ಠ_ಠ) ",
-    "  DDoS  ",
-    " Gotchi "
-};
-
-// Stressed face (severe attack)
-const char* FACE_STRESSED[] = {
-    " (╯°□°)╯",
-    "  DDoS   ",
-    " Gotchi  "
-};
-
-// Quotes for each state
-const char* QUOTE_HAPPY = "All systems normal";
-const char* QUOTE_ALERT = "Hmm... suspicious";
-const char* QUOTE_ATTACK = "UNDER ATTACK!";
-const char* QUOTE_STRESSED = "HELP! DDoS!!!";
+extern const char* QUOTE_HAPPY;
+extern const char* QUOTE_ALERT;
+extern const char* QUOTE_ATTACK;
+extern const char* QUOTE_STRESSED;
 
 // ============================================================================
 // Display Manager Class
